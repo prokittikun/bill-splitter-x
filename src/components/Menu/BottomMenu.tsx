@@ -22,6 +22,7 @@ const menus = [
 ];
 function BottomMenu() {
   return (
+    <>
     <div className="fixed bottom-0 w-full max-w-md overflow-hidden rounded-t-xl bg-white z-10">
       <div className="grid grid-cols-12 items-center">
         {menus.map(({ name, icon, id }, index) => {
@@ -39,6 +40,7 @@ function BottomMenu() {
         })}
       </div>
     </div>
+    </>
   );
 }
 
