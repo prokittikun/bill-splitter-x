@@ -246,49 +246,46 @@ function HomeModal() {
   const [page, setPage] = useState(1);
   const [heightOfScreen, setHeightOfScreen] = useState("100px");
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener("resize", () => {
-        setHeightOfScreen(`${(window.innerHeight * 237) / 700}px`);
-      });
+    const handleSizeChange = () => {
+      setHeightOfScreen(`${(window.innerHeight * 237) / 700}px`);
+    };
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleSizeChange);
     }
+    return () => window.removeEventListener("resize", handleSizeChange);
   }, []);
 
   return (
     <>
-      <div className="absolute bottom-0 z-10  h-full max-h-[60%] w-full max-w-md rounded-[3.5rem] bg-white">
+      <div className="absolute bottom-0 z-10  flex h-full max-h-[60%] w-full max-w-md flex-col rounded-[3.5rem] bg-white">
         <Button currentPage={page} setState={setPage} />
-        <div className="p-2">
-          {page === 1 ? (
-            <>
-              <AddList />
-              {/* <div className="overflow-y-scroll"> */}
+        {page === 1 ? (
+          <>
+            <AddList />
+            <div className="flex flex-1 flex-col overflow-auto p-2 pb-16">
               <div className="mt-3 grid grid-cols-12">
                 <div className="col-span-8">รายการ</div>
                 <div className="col-span-2 text-center">ราคา</div>
                 <div className="col-span-2 text-center">คนละ</div>
               </div>
-              <div
-                className={`mt-2 overflow-y-scroll max-h-[${heightOfScreen}] h-full`}
-              >
-                <div className=" grid grid-cols-12">
-                  {data.map((items, index) => {
-                    return (
-                      <ShowList
-                        key={index}
-                        listName={items.listName}
-                        price={items.price}
-                        listPerson={items.listPerson}
-                      />
-                    );
-                  })}
-                </div>
+              <div className="grid grid-cols-12">
+                {data.map((items, index) => {
+                  return (
+                    <ShowList
+                      key={index}
+                      listName={items.listName}
+                      price={items.price}
+                      listPerson={items.listPerson}
+                    />
+                  );
+                })}
               </div>
-              {/* </div> */}
-            </>
-          ) : (
-            <div>2</div>
-          )}
-        </div>
+            </div>
+          </>
+        ) : (
+          <div>2</div>
+        )}
       </div>
     </>
   );
