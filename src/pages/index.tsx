@@ -11,12 +11,12 @@ const Home: NextPage = () => {
   return (
     <>
       <main>
-        <div className="absolute bottom-0 left-0 right-0 top-0 flex justify-center overflow-hidden">
+        <div className="absolute bottom-0 left-0 right-0 top-0 flex justify-center">
           <HomeQrCode />
           {/* <div className="absolute bottom-0 z-10 h-full max-h-[60%] w-full max-w-md rounded-[3.5rem] bg-white">
             <Button />
           </div> */}
-          <HomeModal/>
+          <HomeModal />
           <BottomMenu />
         </div>
       </main>
