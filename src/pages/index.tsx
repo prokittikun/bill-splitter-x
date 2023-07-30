@@ -1,7 +1,10 @@
 import { type NextPage } from "next";
 
+import dynamic from 'next/dynamic'
 import BottomMenu from "@/components/Menu/BottomMenu";
-import HomeQrCode from "@/components/HomQrCode/HomeQrCode";
+// import HomeQrCode from "@/components/HomQrCode/HomeQrCode";
+ 
+const HomeQrCode = dynamic(() => import('../components/HomQrCode/HomeQrCode'), { ssr: false })
 import Button from "@/components/HomeModal/Button/Button";
 import HomeModal from "@/components/HomeModal/HomeModal";
 
